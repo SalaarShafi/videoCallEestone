@@ -1,0 +1,58 @@
+body {
+  height: 100%;
+  width: 100%;
+
+  background-color: blue;
+}
+
+.modal {
+  /* height: 500px; */
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+
+  /* padding: 50px 0px; */
+
+  margin: auto auto;
+  margin-top: 220px;
+
+  border-radius: 20px;
+
+  background-color: white;
+  box-shadow: 0px 0px 20px rgba(red, green, blue, 0.4);
+}
+
+.modal .selectOptions {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+
+  padding-bottom: 20px;
+}
+
+.modal .cameras {
+  padding-top: 10px;
+}
+
+.modal .selectOptions label {
+  text-align: center;
+  padding-bottom: 5px;
+
+  color: darkblue;
+  font-size: 30px;
+
+  /* text-decoration: underline; */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal .selectOptions select {
+  text-align: center;
+  /* width: 40%; */
+
+  /* margin: ; */
+}
+
+.modal .selectOptions select option {
+  border: 0px;
+}

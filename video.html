@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="" rel="import" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./video.css">
+    <link rel="stylesheet" href="./dropdown-style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Video Screen -->
+  <section class="videoCallContainer">
+
+      <div class="backAndSettingsButton">
+        <i class="backButton fas fa-long-arrow-alt-left">
+        </i>
+        
+        <button class="topSettings" id="showCallSettings"> <span class="fas fa-ellipsis-v"></span> </button>
+      </div>
+
+      <div class="videos">
+        <!-- Your Video Container-->
+        <div class="yourVideo">
+          <!-- Your Video -->
+          <video style="object-fit: cover;" class="yourVideoTag" autoplay
+            src="https://treningi.formazpeszko.pl/recordings/1628154388-05-08-2021-training.mp4" type="video/mp4">
+          </video>
+        </div>
+        <!-- Your Video Ends -->
+
+        <!-- Others video Container-->
+        <div class="othersVideo">
+        
+          <!-- Others video -->
+          <video class="othersVideoTag" id="othersVideo" style="object-fit: cover;" width="350px" height="812px" autoplay
+            src="https://treningi.formazpeszko.pl/recordings/1628154388-05-08-2021-training.mp4" type="video/mp4">
+          </video>
+        
+          <!-- Buttons -->
+          <div class="buttonContainer">
+            <div class="mainButtonsContainer">
+              <button class="mainButtons"> <span class="fas fa-microphone-slash"></span> </button>
+              <button class="mainButtons"> <span class="fas fa-camera"></span> </button>
+              <button onclick="camStart()" id="btnCameraOnOff" class="mainButtons"> <span class="fas fa-video-slash"></span>
+              </button>
+              <button class="mainButtons endCall" id="leaveSession"> <span class="fas fa-phone-slash"></span> </button>
+            </div>
+          </div>
+        </div>
+        <!-- Others videos end -->
+
+      </div>
+      
+  </section>
+
+<div class="modal fade" id="callSettings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Call Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div id="app-cover">
+          <div id="select-box">
+            <input type="checkbox" id="options-view-button">
+            <div id="select-button" class="brd">
+              <div id="selected-value">
+                <span>Select a Microphone</span>
+              </div>
+              <div id="chevrons">
+                <i class="fas fa-chevron-up"></i>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div id="options">
+              <div class="option">
+                <input class="s-c top" type="radio" name="platform" value="codepen">
+                <input class="s-c bottom" type="radio" name="platform" value="codepen">
+                <i class="fa fa-microphone"></i>
+                <span class="label">Default (Audio Device)</span>
+              </div>
+        
+              <div id="option-bg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- stars  -->
+  <div class="modal fade" id="sessionRating" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Session Ending</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align: center;">
+          <p style="margin-bottom:50px">How did you experience calling session with us, with your feedback we can improve
+            it for you!</p>
+  
+          <section class='rating-widget'>
+            <!-- Rating Stars Box -->
+            <div class='rating-stars text-center'>
+              <ul id='stars'>
+                <li class='star' title='Poor' data-value='1'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Fair' data-value='2'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Good' data-value='3'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Excellent' data-value='4'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='WOW!!!' data-value='5'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+              </ul>
+            </div>
+  
+            <div class='success-box'>
+              <div class='clearfix'></div>
+              <img alt='tick image' width='32'
+                src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
+              <div class='text-message'></div>
+              <div class='clearfix'></div>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="endCallSession">Leave Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end Stars -->
+
+  <script>
+    function camStart() {
+      var ovid = document.getElementById('otherUserVideo');
+      ovid.play();
+    };
+
+    $('#showCallSettings').on('click', function () {
+        $('#callSettings').modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+      });
+
+// star init
+
+      $('#leaveSession').on('click', function () {
+          $("#sessionRating").modal({
+            backdrop: 'static',
+            keyboard: false
+          });
+
+        });
+
+        $(document).ready(function () {
+
+            /* 1. Visualizing things on Hover - See next part for action on click */
+            $('#stars li').on('mouseover', function () {
+              var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+              // Now highlight all the stars that's not after the current hovered star
+              $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                  $(this).addClass('hover');
+                }
+                else {
+                  $(this).removeClass('hover');
+                }
+              });
+
+            }).on('mouseout', function () {
+              $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+              });
+            });
+
+
+            /* 2. Action to perform on click */
+            $('#stars li').on('click', function () {
+              var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+              var stars = $(this).parent().children('li.star');
+
+              for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+              }
+
+              for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+              }
+
+              // JUST RESPONSE (Not needed)
+              var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+              var msg = "";
+              if (ratingValue > 1) {
+                msg = "Thanks! You rated this " + ratingValue + " stars.";
+              }
+              else {
+                msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+              }
+              responseMessage(msg);
+
+            });
+
+            function responseMessage(msg) {
+            $('.success-box').fadeIn(200);
+            $('.success-box div.text-message').html("<span>" + msg + "</span>");
+          }
+
+
+          });
+  </script>
+</body>
+
+</html>
